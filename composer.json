@@ -1,0 +1,13 @@
+{
+    "name": "Woocommerce Rest API client",
+    "description": "Woocommerce Rest API client",
+    "homepage": "https://github.com/kloon/WooCommerce-REST-API-Client-Library",
+    "authors": [
+        {
+            "name": "kloon",
+            "email": "",
+            "homepage": "https://github.com/kloon/",
+            "role": "Developer"
+        }
+    ]
+}
