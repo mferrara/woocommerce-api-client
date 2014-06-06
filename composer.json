@@ -1,6 +1,6 @@
 {
     "name": "afurculita/woocommerce-api-client",
-    "license": "MIT",
+    "license": "GPLv3",
     "type": "project",
     "description": "Woocommerce Rest API client",
     "homepage": "https://github.com/afurculita/woocommerce-api-client/",
