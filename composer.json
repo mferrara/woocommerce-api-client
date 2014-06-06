@@ -3,17 +3,26 @@
     "license": "MIT",
     "type": "project",
     "description": "Woocommerce Rest API client",
-    "homepage": "https://github.com/kloon/WooCommerce-REST-API-Client-Library",
+    "homepage": "https://github.com/afurculita/woocommerce-api-client/",
+    "autoload": {
+        "files": ["src/WC/Api/Client.php"]
+    }
     "authors": [
         {
             "name": "Gerhard Potgieter",
             "homepage": "https://github.com/kloon/",
             "role": "Developer"
+        },
+        {
+            "name": "Alexandru Furculita",
+            "email": "alex@rhetina.com",
+            "homepage": "https://github.com/afurculita/",
+            "role": "Developer"
         }
     ],
     "extra": {
         "branch-alias": {
-            "dev-master": "v0.1.x-dev"
+            "dev-master": "v0.3.x-dev"
         }
     },
     "minimum-stability": "dev"
