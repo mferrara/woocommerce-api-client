@@ -1,8 +1,6 @@
 WooCommerce REST API Client Library
 ===================================
 
-## About
-
 A PHP wrapper for the WooCommerce REST API. Easily interact with the WooCommerce REST API using this wrapper class.
 Feedback and bug reports are appreciated.
 
