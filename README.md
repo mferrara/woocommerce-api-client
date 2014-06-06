@@ -20,11 +20,11 @@ Generate API credentials ( Consumer Key & Consumer Secret ) on your profile page
 ### Initialize the class
 ```php
 <?php
-    require_once 'class-wc-api-client.php';
+    require_once 'src/WC/Api/Client.php';
 
     $consumer_key = 'ck_fcedaba8f0fcb0fb4ae4f1211a75da72'; // Add your own Consumer Key here
 	$consumer_secret = 'cs_9914968ae9adafd3741c818bf6d704c7'; // Add your own Consumer Secret here
-	$store_url = 'http://localhost/'; // Add the home URL to the store you want to connect to here
+	$store_url = 'http://store.rhetina.com/'; // Add the home URL to the store you want to connect to here
 
 	// Initialize the class
 	$wc_api = new WC_API_Client( $consumer_key, $consumer_secret, $store_url );
