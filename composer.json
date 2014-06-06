@@ -6,7 +6,7 @@
     "homepage": "https://github.com/afurculita/woocommerce-api-client/",
     "autoload": {
         "files": ["src/WC/Api/Client.php"]
-    }
+    },
     "authors": [
         {
             "name": "Gerhard Potgieter",
