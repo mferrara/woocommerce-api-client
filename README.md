@@ -18,7 +18,7 @@ Generate API credentials ( Consumer Key & Consumer Secret ) on your profile page
 ### Initialize the class
 ```php
 <?php
-    require_once 'src/WC/Api/Client.php';
+    require_once 'src/WC/API/Client.php';
 
     $consumer_key = 'ck_fcedaba8f0fcb0fb4ae4f1211a75da72'; // Add your own Consumer Key here
 	$consumer_secret = 'cs_9914968ae9adafd3741c818bf6d704c7'; // Add your own Consumer Secret here
