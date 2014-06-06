@@ -1,5 +1,7 @@
 {
     "name": "afurculita/woocommerce-api-client",
+    "license": "MIT",
+    "type": "project",
     "description": "Woocommerce Rest API client",
     "homepage": "https://github.com/kloon/WooCommerce-REST-API-Client-Library",
     "authors": [
@@ -8,5 +10,11 @@
             "homepage": "https://github.com/kloon/",
             "role": "Developer"
         }
-    ]
+    ],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "master"
+        }
+    },
+    "minimum-stability": "dev"
 }
