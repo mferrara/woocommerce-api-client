@@ -85,26 +85,6 @@ Generate API credentials ( Consumer Key & Consumer Secret ) on your profile page
 If you extended the WooCommerce API with your own endpoints you can use the following function to get access to that data
 - `make_custom_endpoint_call( $endpoint, $params = array(), $method = 'GET' )`
 
-## Changelog
-
-**version 0.3.1 - 2014-05-02**
-
-- Fix parameter normalization issue with WC 2.1.7+
-
-**version 0.3 - 2014-02-20**
-
-- Add HTTP error messages on failed cURL calls
-
-**version 0.2 - 2014-01-22**
-
-- Add support for filters/params to endpoint functions
-- Add new top sellers report endpoint function
-- Add function to call custom endpoints
-
-**version 0.1 - 2013-12-10**
-
-- Initial release
-
 ## Credit
 
 Copyright (c) 2013-2014 - [Gerhard Potgieter](http://gerhardpotgieter.com/)
