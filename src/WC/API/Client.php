@@ -18,7 +18,7 @@ class WC_API_Client
      */
     const HASH_ALGORITHM = 'SHA256';
 
-    const VERSION = '0.3.1';
+    const VERSION = '0.3.3';
     /**
      * The API URL
      *
