@@ -144,7 +144,7 @@ class WC_API_Client
      */
     public function update_order( $order_id, $data = array() )
     {
-        return $this->_make_api_call( 'orders/' . $order_id, $data, 'POST' );
+        return $this->_make_api_call( 'orders/' . $order_id, $data, 'PUT' );
     }
 
     /**
@@ -469,12 +469,19 @@ class WC_API_Client
         curl_setopt( $ch, CURLOPT_TIMEOUT, 30 );
         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 
-        if ('POST' === $method) {
-            curl_setopt( $ch, CURLOPT_POST, true );
+        if ('POST' === $method || 'PUT' === $method) {
             curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $data ) );
+            if('PUT' === $method)
+            {
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+            }
+            else
+            {
+                curl_setopt( $ch, CURLOPT_POST, true );
+            }
         } else {
             if ('DELETE' === $method) {
-                curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, 'DELETE' );
+                curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, $method );
             }
         }
 
