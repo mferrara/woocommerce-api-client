@@ -18,7 +18,7 @@ class WC_API_Client
      */
     const HASH_ALGORITHM = 'SHA256';
 
-    const VERSION = '0.3.4';
+    const VERSION = '0.3.5';
     /**
      * The API URL
      *
@@ -368,6 +368,19 @@ class WC_API_Client
     public function get_top_sellers_report( $params = array() )
     {
         return $this->_make_api_call( 'reports/sales/top_sellers', $params );
+    }
+
+    /**
+     *
+     * Get a list of all order statuses
+     *
+     * @return array
+     *
+     */
+
+    public function get_statuses()
+    {
+        return $this->_make_api_call( 'orders/statuses', [] );
     }
 
     /**
