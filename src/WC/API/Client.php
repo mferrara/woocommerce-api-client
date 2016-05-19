@@ -18,7 +18,7 @@ class WC_API_Client
      */
     const HASH_ALGORITHM = 'SHA256';
 
-    const VERSION = '0.3.5';
+    const VERSION = '0.3.6';
     /**
      * The API URL
      *
@@ -380,7 +380,135 @@ class WC_API_Client
 
     public function get_statuses()
     {
-        return $this->_make_api_call( 'orders/statuses', [] );
+        return $this->_make_api_call( 'orders/statuses', array() );
+    }
+
+    /**
+     *
+     * Create a webhook
+     *
+     * @param array $parameters
+     *
+     * @return array
+     */
+
+    public function create_webhook($parameters)
+    {
+        return $this->_make_api_call( 'webhooks', $parameters, 'POST' );
+    }
+
+    /**
+     *
+     * View a webhook
+     *
+     * @param integer $webhook_id
+     * 
+     * @return array
+     */
+
+    public function get_webhook($webhook_id)
+    {
+        return $this->_make_api_call('webhooks/' . $webhook_id);
+    }
+
+    /**
+     * 
+     * Update a webhook
+     *
+     * @param integer $webhook_id
+     * @param array $parameters
+     * 
+     * @return array
+     */
+
+    public function update_webhook($webhook_id, $parameters)
+    {
+        return $this->_make_api_call('webhook/' . $webhook_id, $parameters, 'PUT');
+    }
+
+    /**
+     *
+     * Delete a webhook
+     *
+     * @param integer $webhook_id
+     *
+     * @return array
+     */
+
+    public function delete_webhook($webhook_id)
+    {
+        return $this->_make_api_call('webhooks/' . $webhook_id, array(), 'DELETE');
+    }
+
+    /**
+     *
+     * Get a list of the webhooks
+     *
+     * Pass a string status to filter results by their status (active, paused, disabled)
+     *
+     * @param string $status
+     *
+     * @return array
+     */
+
+    public function get_webhooks($status = '')
+    {
+        $url = 'webhooks';
+
+        if($status !== '')
+            $url = '?status='.$status;
+
+        return $this->_make_api_call($url);
+    }
+
+    /**
+     *
+     * View webhook count
+     *
+     * Pass a string status to filter results by their status (active, paused, disabled)
+     *
+     * @param string $status
+     *
+     * @return array
+     */
+
+    public function get_webhook_count($status = '')
+    {
+        $url = 'webhooks/count';
+
+        if($status !== '')
+            $url = '?status='.$status;
+
+        return $this->_make_api_call($url);
+    }
+    
+    /**
+     *
+     * View a webhook delivery
+     * 
+     * @param integer $webhook_id
+     * @param integer $delivery_id
+     * 
+     * @return array
+     */
+
+    public function get_webhook_delivery($webhook_id, $delivery_id)
+    {
+        return $this->_make_api_call('webhooks/' . $webhook_id . '/deliveries/' . $delivery_id);
+    }
+    
+    /**
+     *
+     * Get a list of all webhook deliveries for a given webhook id
+     *
+     * @param integer $webhook_id
+     *
+     * @return array
+     */
+
+    public function get_webhook_deliveries($webhook_id)
+    {
+        return $this->_make_api_call( 'webhooks/'.$webhook_id.'/deliveries');
     }
 
     /**
