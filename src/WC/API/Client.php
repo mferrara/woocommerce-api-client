@@ -18,7 +18,7 @@ class WC_API_Client
      */
     const HASH_ALGORITHM = 'SHA256';
 
-    const VERSION = '0.3.7';
+    const VERSION = '0.3.8';
     /**
      * The API URL
      *
@@ -61,6 +61,7 @@ class WC_API_Client
      * @param string  $consumer_secret The consumer secret
      * @param string  $store_url       The URL to the WooCommerce store
      * @param boolean $is_ssl          If the URL is secure or not, optional
+     * @throws Exception
      */
     public function __construct( $consumer_key, $consumer_secret, $store_url, $is_ssl = false )
     {
@@ -93,7 +94,7 @@ class WC_API_Client
      *
      * @param  array $params
      *
-     * @return mixed|jason string
+     * @return mixed|json string
      */
     public function get_orders( $params = array() )
     {
@@ -577,7 +578,7 @@ class WC_API_Client
      * Make the call to the API
      *
      * @param  string $endpoint
-     * @param  array  $params
+     * @param  array  $data
      * @param  string $method
      *
      * @return mixed|json string
@@ -632,15 +633,36 @@ class WC_API_Client
 
         $return = curl_exec( $ch );
 
-        $code = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
+        $code   = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
 
         if ($this->_return_as_object) {
             $return = json_decode( $return );
         }
 
         if (empty( $return )) {
-            $return = '{"errors":[{"code":"' . $code . '","message":"cURL HTTP error ' . $code . '"}]}';
-            $return = json_decode( $return );
+
+            // If the code returned is 0 it's possible/likely that the request timed out, let's try to run it again
+            // (We're having issues on the client site that this package is being used on where the WooCommerce API is timing out on some
+            // queries, until we can diagnose and fix that issue we're going to attempt to re-run those requests here)
+            if($code == 0)
+            {
+                // Take a short break as to not hammer the already failing API endpoint
+                sleep(1);
+
+                // Re-run the request
+                $return = curl_exec( $ch );
+                $code   = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
+                if ($this->_return_as_object) {
+                    $return = json_decode( $return );
+                }
+
+                // If the request still failed we'll return the error
+                if( empty($return))
+                {
+                    $return = '{"errors":[{"code":"' . $code . '","message":"cURL HTTP error ' . $code . '"}]}';
+                    $return = json_decode( $return );
+                }
+            }
         }
 
         return $return;
